@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Gunawan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif; /* Changed to Inter */
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Use min-height for better centering on smaller content */
+    }
+
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      width: 90%; /* Make it more responsive */
+      max-width: 400px; /* Max width for larger screens */
+      text-align: center;
+      box-sizing: border-box; /* Include padding in width */
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .upload-box {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fafafa;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px; /* Ensure some height for drag area */
+    }
+
+    .upload-box p {
+        margin: 5px 0;
+        line-height: 1.4;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+      width: 100%; /* Make file input responsive */
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px; /* Increased padding for better touch targets */
+      margin-bottom: 15px;
+      border-radius: 8px; /* Slightly more rounded */
+      border: 1px solid #ccc;
+      box-sizing: border-box; /* Include padding in width */
+      font-size: 16px; /* Ensure readable font size */
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+    }
+
+    button:hover {
+      background-color: #388E3C;
+      transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    .link a {
+      color: #6a1b9a;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+      color: #8e24aa; /* Darker hover color */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        .card {
+            padding: 20px;
+            margin: 10px;
+        }
+        h2 {
+            font-size: 22px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🧠 Website Gunawan</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <div class="upload-box">
+        📄 <br>
+        <p>Drag & Drop atau klik untuk<br> memilih gambar</p>
+        <input type="file" name="image" accept="image/*" required />
+      </div>
+
+      <label for="method">Metode</label>
+      <select id="method" name="method">
+        <option value="canny">Deteksi - Canny</option>
+        <option value="sobel">Deteksi - Sobel</option>
+        <option value="laplacian">Deteksi - Laplacian</option>
+      </select>
+
+      <label for="effect">Efek</label>
+      <select id="effect" name="effect">
+        <option value="none">Tidak Ada</option>
+        <option value="grayscale">Grayscale</option>
+        <option value="cartoon">Kartun</option>
+        <option value="blur">Blur</option>
+      </select>
+
+      <button type="submit">🖼️ Proses Gambar</button>
+    </form>
+
+    <div class="link">
+      📊 <a href="/history">Lihat Riwayat Proses</a>
+    </div>
+  </div>
+</body>
+</html>

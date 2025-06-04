@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added viewport -->
+    <title>Website Gunawan - Histori Proses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(to right, #fceabb, #f8b500);
+            color: #333;
+            padding: 2rem;
+            display: flex; /* Added for centering */
+            justify-content: center; /* Added for centering */
+            align-items: flex-start; /* Align to top, or center if content is short */
+            min-height: 100vh; /* Ensure full height */
+            box-sizing: border-box; /* Include padding in height */
+        }
+        .container {
+            max-width: 900px;
+            width: 100%; /* Make it responsive */
+            margin: auto; /* Keep margin auto for horizontal centering */
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Added shadow */
+            box-sizing: border-box;
+        }
+        h2 {
+            color: #e67e22;
+            text-align: center; /* Centered heading */
+            margin-bottom: 2rem;
+        }
+        .item {
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack elements vertically on small screens */
+            align-items: flex-start; /* Align items to start */
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem; /* Increased padding */
+            border-bottom: 1px solid #eee; /* Lighter border */
+        }
+        .item:last-child {
+            border-bottom: none; /* No border for the last item */
+        }
+        .item p {
+            margin: 0.25rem 0; /* Smaller margins for paragraphs */
+            font-size: 0.95rem;
+        }
+        .image-group {
+            display: flex;
+            flex-wrap: wrap; /* Allow images to wrap */
+            gap: 1rem; /* Space between images */
+            margin-top: 1rem;
+            justify-content: center; /* Center images within their group */
+            width: 100%;
+        }
+        .images img {
+            width: 100%; /* Make images responsive within their container */
+            max-width: 200px; /* Max width for individual images */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Added shadow to images */
+            object-fit: contain; /* Ensure image fits without cropping */
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 2rem auto 0; /* Center button */
+            padding: 0.75rem 1.5rem;
+            background-color: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+        }
+        .back-button:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments for larger screens */
+        @media (min-width: 768px) {
+            .item {
+                flex-direction: row; /* Row layout on larger screens */
+                align-items: center; /* Align items to center vertically */
+                justify-content: space-between; /* Space out content and images */
+            }
+            .item p {
+                flex-basis: 30%; /* Allocate space for text */
+                margin-right: 1rem;
+            }
+            .image-group {
+                flex-basis: 65%; /* Allocate space for images */
+                justify-content: flex-end; /* Align images to the right */
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .item {
+                padding-bottom: 1rem;
+            }
+            .image-group {
+                flex-direction: column; /* Stack images on very small screens */
+                align-items: center;
+            }
+            .images img {
+                max-width: 150px; /* Smaller images on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🧾 Histori Proses Gambar - Website Gunawan</h2>
+        {% if history %}
+            {% for entry in history %}
+                <div class="item">
+                    <div>
+                        <p><strong>Waktu:</strong> {{ entry.timestamp }}</p>
+                        <p><strong>Metode:</strong> {{ entry.method | capitalize }} | <strong>Efek:</strong> {{ entry.effect | capitalize }}</p>
+                    </div>
+                    <div class="image-group">
+                        <img src="{{ url_for('static', filename=entry.original) }}" alt="Original" class="images">
+                        <img src="{{ url_for('static', filename=entry.result) }}" alt="Result" class="images">
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; margin-top: 30px; font-size: 1.1rem; color: #555;">Belum ada riwayat proses gambar.</p>
+        {% endif %}
+        <a href="/" class="back-button">Kembali ke Beranda</a>
+    </div>
+</body>
+</html>
